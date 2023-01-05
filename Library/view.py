@@ -3,8 +3,7 @@
 
 
 def main_menu():
-    print('\nВыберите пункт меню: ')
-    print('1. Показать телефонную книгу')
+    print('\n1. Показать телефонную книгу')
     print('2. Открыть файл телефонной книги')
     print('3. Сохранить файл телефонной книги')
     print('4. Добавить контакт')
@@ -21,6 +20,7 @@ def choice_main_menu():
     while True: 
         try:
             choice = int(input('Выберите команду из меню: '))
+            print()
             if choice in range(0,8):
                 return choice
             else:
@@ -35,7 +35,26 @@ def print_phone_book(phone_book: list):
         for id, contact in enumerate(phone_book, 1):
             print(id, *contact)
     else:
-        print('Телефонная книга пуста, или не загружена!')
+        print('Телефонная книга пуста или не загружена!')
 
 def log_off():
     print('До свидания! До новых встреч!')
+
+def load_success():
+    print('Телефонная книга загруженна!') 
+
+def save_success():
+    print('Телефонная книга сохранена!') 
+
+def input_new_contact():
+    name = input('Введите имя контакта: ')
+    phone = input('Введите телефон контакта: ')
+    comment = input('Введите звание: ')
+    return [name, phone, comment]
+
+def input_remove_contact():
+    id = int(input('Введите id контакта, которого желаете удалить: '))
+    return id
+
+def remove_seccess():
+    print('Удаление контакта завершено!')

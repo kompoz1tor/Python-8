@@ -1,30 +1,40 @@
+#Связывает phone_book со view
+
 import view
 import phone_book as pb
 import data_base as db
 
 
-#Связывает phone_book со view
+print(view.main_menu())
+
 def main_menu(choice: int):
     match choice:
         case 1: 
             phone_book = pb.get_phone_book()
-            view.print_phone_book(phone_book)
+            view.print_phone_book(phone_book) # показываем телефонную книгу
         case 2: 
-            db.load_data_base()
+            db.load_data_base() # добавляем телефонную книгу
+            view.load_success() 
         case 3: 
-            print()
-        case 4: 
-            print()
+            db.save_data_base()
+            view.save_success()
+        case 4:
+            contact = view.input_new_contact() #вызываем функцию для ввода данных нового контакта 
+            pb.add_contact(contact)
         case 5: 
-            print()
+            print('5')
         case 6: 
-            print()
+            id = view.input_remove_contact()
+            if pb.remove_contact(id):
+                view.remove_seccess()
+            phone_book = pb.get_phone_book()
+            view.print_phone_book(phone_book)
         case 7: 
-            print()
+            print('7')
         case 0: 
             return True
 
-print(view.main_menu())
+
 #Делаем while True - будет крутить меню по кругу, пока не введём 0
 #Только в случае case 0 возвращает True и срабатывает break
 while True:
